@@ -723,13 +723,14 @@ def UNet(input_shape = (128,128,3)):
     
     
     return model
-    ```
+```
 ### 학습준비
 #### 모델준비 및 컴파일준비
 ```
 model = UNet(input_shape = (128,128,3))
 model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
 ```
+
 #### 데이터 전처리 및 학습
 ```
 image_size = 128 
@@ -748,7 +749,9 @@ train_steps =  len(os.listdir( train_img_path ))/batch_size
 
 hist = model.fit_generator(train_gen , validation_data = val_gen , steps_per_epoch = train_steps , epochs=epochs)
 ```
+
 ### 모델 성능 평가
+
 ```
 #HIST
 import matplotlib.pyplot as plt

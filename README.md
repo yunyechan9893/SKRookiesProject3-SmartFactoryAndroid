@@ -31,3 +31,94 @@
 3. image data와 mask data에 Min-Max normalization 적용
 4. image data는 RGB / mask data를 grayscale로 처리
 5. input image size = (128,128)로 resize함
+## 모델링
+### U-net
+![u-net-architecture](https://user-images.githubusercontent.com/125535111/226705327-eca53949-7338-424c-b20f-c254dda8cdab.png)
+출처 : <uni-freiburg ( https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/ )>
+- U-Net이란 ?
+  - U-Net은 생물의학 분야에서 이미지 분할(Image Segmentation)을 목적으로 제안된 End-to-End 방식의 Fully-Convolutional Network 기반 모델입니다. 네트워크 구성의 형태가 'U' 모양으로 U-Net 이름이 붙여졌습니다.
+#### 장단점 및 선정 이유
+- 장점
+  - 적은 양의 학습 데이터로도 Data Augmentation을 활용해 여러 바이오 메디컬 이미지 분할 문제에서 우수한 성능을 보임
+  - 컨텍스트 정보를 잘 사용하면서도 정확히 지역화함
+    - 맥스풀링 전 데이터를 카피하여 업-콘볼루젼 시 참조하기 때문이다. 
+  - End-to-End 구조로 속도가 빠름
+  - 속도가 빠른 이유: 검증이 끝난 곳은 건너뛰고 다음 Patch부터 새 검증을 하기 때문.
+  - 용어정리
+    - Data Augmentation : 이미지를 다양한 각도 형태로 왜곡하여 변형된 이미지를 만든다. 변형시킨 데이터는 학습시 새로운 이미지로 인식한다.
+    - End-to-End : 입력에서 출력까지 파이프라인 네트워크없이 한번에 처리하는 것을 말한다. 예를들면 텍스트를 학습시킨다고한다면, 형태소 -> 인코딩 -> ... -> 디코딩 등 여러가지를 거쳐야하지만, End-to-End는 그 과정을 생략하고 바로 텍스트를 바로 출력한다.
+- 단점
+  - 어두운 이미지의 경우 학습이 어려움
+- 선정 이유
+  - ANOGAN을 사용하면  학습 데이터의 형태가 일정한면이 아닌 여러방면에서 찍힘
+  - Crack과 같은 균열을 찾는데 주로 이용됨
+### FCN과 비교
+![fcn비교](https://user-images.githubusercontent.com/125535111/226705768-193310e3-5a41-4d75-8414-d1e7867ed4a1.png)
+- shortcut
+  - layer가 깊어짐에 따라 vanishing gradient 현상이 나타나는데 shortcut을 통해 이전feature를 다시 넣어줌으로 방지함
+- upsampling
+  - feature map을 생성하여 이미지의 특성을 더 잘 잡아낼 수 있게함
+### 모델 학습
+- 학습 데이터
+  - 총 이미지 데이터 5630개
+    - 훈련 데이터 5010개 + 검증 데이터 570개 + 테스트 데이터 50개
+  - optimizer : adam
+  - loss function : cross entropy
+  - batch size : 8
+  - epoch : 30
+  - training time : 약 3시간
+- 개발 스펙
+  - tensorflow : 2.11.0
+  - Flask : 1.1.2
+  - Python : 3.10.9
+### 평가 지표
+![평가지표](https://user-images.githubusercontent.com/125535111/226706000-6fd19ba2-d58e-431d-8193-f8b661361077.png)
+- Train accuracy = 93.1%
+- Validation accuracy = 91.9%
+![평가지표 손실함수](https://user-images.githubusercontent.com/125535111/226706159-9b110184-a153-4bc7-a9dd-59871d9b1448.png)
+- Train loss = 0.09
+- Validation loss = 0.22
+## 코드
+###데이터 준비
+#### 양품, 불량품 분리
+- AI 허브에서 데이터 받을 시 사용
+  - 불량품과 양품이 섞여있어 분리해줘야함
+  - 경로설정 해줘야함
+  - 코랩 사용시 미리 이동시킬 폴더를 만들어 줘야함
+```Ruby 
+      import glob
+      import json
+      import shutil
+
+      def move_good_quality_file_dir( label_cur_path, label_befo_path, data_cur_path, data_befo_path) :
+          '''
+              사용하기 전 양품 데이터 디렉토리와 라벨 양품 데이터 디렉토리를 만들어주세요
+              그리고 밑에서 경로를 설정해주세요
+          '''
+
+          files_name = list()
+
+          for file_path in glob.glob(label_cur_path) :
+              with open( file_path, mode='r', encoding='UTF-8-sig') as f:
+                  data = json.load(f)
+                  data_quli = data['annotations'][0]['attributes']['quality']
+
+              if data_quli == '양품' : 
+                  files_name.append(data['images'][0]['file_name'])
+                  shutil.move(file_path , label_befo_path)           
+
+          for file_name in files_name :
+              print('file_name : ' ,file_name)
+              shutil.move(data_cur_path+file_name , data_befo_path)
+
+
+      label_cur_path  = './' # json label 경로 설정  ex) ./car_check/data/Training/label/door/scratch/*.json
+      label_befo_path = './' # 이동 전 라벨 경로     ex) ./car_check/data/Training/label/door/scratch_pass
+      data_cur_path   = './' # 이동 전 데이터 경로   ex) ./car_check/data/Training/data/door/scratch/
+      data_befo_path  = './' # 이동 후 데이터 경로   ex) ./car_check/data/Training/data/door/scratch_pass
+
+      move_good_quality_file_dir( label_cur_path, label_befo_path, data_cur_path, data_befo_path)
+
+  ```
+
+

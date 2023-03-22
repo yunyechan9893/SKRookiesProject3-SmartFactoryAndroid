@@ -724,6 +724,7 @@ def UNet(input_shape = (128,128,3)):
     
     return model
 ```
+
 ### 학습준비
 #### 모델준비 및 컴파일준비
 ```

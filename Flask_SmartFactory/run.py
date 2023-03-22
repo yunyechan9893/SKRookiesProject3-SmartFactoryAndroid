@@ -13,9 +13,19 @@ from firebase_admin import storage
 from uuid import uuid4
 import os
 import glob
+from requests import get
 
 #my project id
 PROJECT_ID = "carscratch"
+
+url  = 'https://firebasestorage.googleapis.com/v0/b/carscratch.appspot.com/o/Model%2Fbeefprince_model.h5?alt=media&token=23767bf7-35ab-4a55-8bec-f6564bcb097a'
+path = './Model/beefprince_model.h5'
+
+# 딥러닝 파일 저장하기, 최초 한번만 실행
+if not os.path.isfile(path) :
+    with open('./Model/beefprince_model.h5', 'wb') as f :
+        ai_file = get(url)
+        f.write(ai_file.content)
 
 # 파이어베이스 고유식별파일 => 이게 있어야 파이어베이스 접근허가
 cred = credentials.Certificate(r'.\res\service-account-file.json')
@@ -50,7 +60,7 @@ def hello( ):
     # 이미지 파일 저장
     req_img.save(f'{save_img_path}/{unique_file_name}')
 
-    # 위에서 저장한 이미지로 예측을 수행한다 => 마스크 생성
+    # 위에서 저장한 이미지로 예측을 수행한다 => 마스크 생성 
     # DataGen을 통해 학습하기에 알맞은 형태로 만들어준다 
     y_predict = model.predict(DataGen(save_img_path, batch_size=1))
     

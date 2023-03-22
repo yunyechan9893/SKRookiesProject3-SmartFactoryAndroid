@@ -726,7 +726,8 @@ def UNet(input_shape = (128,128,3)):
 ```
 
 ### 학습준비
-#### 모델준비 및 컴파일준비
+
+#### 모델 및 컴파일 준비
 ```
 model = UNet(input_shape = (128,128,3))
 model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])

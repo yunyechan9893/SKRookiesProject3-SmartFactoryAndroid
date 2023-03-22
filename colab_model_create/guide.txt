@@ -1,0 +1,1 @@
+tf_Keras_COCO_UNET.ipynb를 실핼할 때 /content/ 경로에 zip파일 그대로 올려주세요.

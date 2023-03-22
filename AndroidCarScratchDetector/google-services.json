@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1072187246855",
+    "project_id": "carscratch",
+    "storage_bucket": "carscratch.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072187246855:android:4c799f747e8db17438dda2",
+        "android_client_info": {
+          "package_name": "com.example.carscratchdetector"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072187246855-k027deoermom5p3ocuva5l3joq8qislr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAsh_bz8d5BDHYVzZ44525o2CyorVMEUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072187246855-k027deoermom5p3ocuva5l3joq8qislr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

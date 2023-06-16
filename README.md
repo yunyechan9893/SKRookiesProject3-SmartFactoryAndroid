@@ -1,14 +1,16 @@
 # smart_factory_car_paint
 - 자동차의 스크래치를 마스크 처리하여 보여주는 어플
 - 코랩학습 -> 플라스크 모델 서빙 -> 안드로이드 서비스 배포
-- 
 ## 간단소개
 ### Tec Stack
+![project3_stack](https://github.com/yunyechan9893/sk_rookies_project3/assets/125535111/01611ff5-89cd-476c-afca-40df2918a53c)
+
 ### 결과
 ![제목을-입력해주세요_-001](https://github.com/yunyechan9893/sk_rookies_project3/assets/125535111/1cd62fe0-1926-49f0-9c82-bffc316ff881)
 
 ## 개요
 ![현대차_도색_결함_2021_04_05](https://user-images.githubusercontent.com/125535111/226703137-a52f9981-ffd4-4f60-8439-079974f9d810.png)
+
 ### 기획 의도
 - 완성차의 소비자가격은 보통 수천을 호가한다. 도색불량, 차체불량으로 인해 소비자가 무상수리나 환불을 청구한다면 그 피해액은 모두 회사에서 부담해야한다. 
 소비자들은 현기차(현대/기아차)의 도색불량에 대해 꾸준히 문제를 제기해 오고 있다.

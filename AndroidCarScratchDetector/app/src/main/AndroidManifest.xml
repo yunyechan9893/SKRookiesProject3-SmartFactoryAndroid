@@ -18,8 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CarScratchDetector"
         tools:targetApi="31">
-        <activity android:name=".FlaskCommunication"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".view.FlaskCommunication"/>
+        <activity android:name=".view.MainActivity"/>
         <activity
             android:name=".LodingActivity"
             android:exported="true">

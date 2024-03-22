@@ -1,4 +1,4 @@
-package com.example.carscratchdetector;
+package com.example.carscratchdetector.view;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.example.carscratchdetector.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,9 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btnComm){
-        verifyStoragePermissions(this);
-        Intent intent = new Intent( MainActivity.this , FlaskCommunication.class );
-        startActivity(intent);
+            verifyStoragePermissions(this);
+            Intent intent = new Intent( MainActivity.this , FlaskCommunication.class );
+            startActivity(intent);
         }
     }
 

@@ -26,7 +26,7 @@ public class RetrofitClient {
 
 
             instance = new Retrofit.Builder()
-                    .baseUrl("http://api.yechan-portfolio.site")
+                    .baseUrl("http://api.smartfactory.yechan-portfolio.site")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(httpClient.build())
                     .build();

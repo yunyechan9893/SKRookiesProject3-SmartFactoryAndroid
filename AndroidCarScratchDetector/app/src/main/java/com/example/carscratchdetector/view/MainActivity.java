@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId() == R.id.btnComm){
             verifyStoragePermissions(this);
-            Intent intent = new Intent( MainActivity.this , FlaskCommunication.class );
+            Intent intent = new Intent( MainActivity.this , FileUploadActivity.class );
             startActivity(intent);
         }
     }

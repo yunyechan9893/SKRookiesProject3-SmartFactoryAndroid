@@ -8,4 +8,8 @@ public class MaskResponseDto {
 
     @SerializedName("message")
     String message;
+
+    public String  getMaskImg(){
+        return maskImg;
+    }
 }

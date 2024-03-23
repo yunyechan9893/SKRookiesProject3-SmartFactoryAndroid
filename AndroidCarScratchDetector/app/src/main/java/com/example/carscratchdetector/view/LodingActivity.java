@@ -1,4 +1,4 @@
-package com.example.carscratchdetector;
+package com.example.carscratchdetector.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.carscratchdetector.view.MainActivity;
+import com.example.carscratchdetector.R;
 
 public class LodingActivity extends AppCompatActivity {
     @Override
@@ -19,14 +19,9 @@ public class LodingActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        new Handler().postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                Intent intent = new Intent(LodingActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        }, 3000);// 0.6초 정도 딜레이를 준 후 시작
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(LodingActivity.this, MainActivity.class);
+            startActivity(intent);
+        }, 1000);
     }
 }

@@ -11,6 +11,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static Retrofit instance = null;
+    // 테스트 시
+    // private static final String BASE_URL =  "http://10.0.2.2:3333/";
+    private static final String BASE_URL = "http://api.smartfactory.yechan-portfolio.site";
     private static Gson gson = new GsonBuilder().setLenient().create();
 
     private RetrofitClient() {
@@ -26,7 +29,7 @@ public class RetrofitClient {
 
 
             instance = new Retrofit.Builder()
-                    .baseUrl("http://api.smartfactory.yechan-portfolio.site")
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(httpClient.build())
                     .build();

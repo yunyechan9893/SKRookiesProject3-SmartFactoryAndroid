@@ -14,8 +14,6 @@
 - 딥러닝 모델 구축, 백엔드 서버 구축, 안드로이드 앱 구축
 ### 달성한 결과/성과
 - 딥러닝 생성모델 구축부터 배포까지 모든 것을 경험하며 프로젝트 협업시 필요한 전반적인 내용을 배웠고, 실력이 눈에 띄게 향상되었다.  
-### Tec Stack
-![project3_stack](https://github.com/yunyechan9893/sk_rookies_project3/assets/125535111/01611ff5-89cd-476c-afca-40df2918a53c)
 
 ### 결과
 ![제목을-입력해주세요_-001](https://github.com/yunyechan9893/sk_rookies_project3/assets/125535111/1cd62fe0-1926-49f0-9c82-bffc316ff881)

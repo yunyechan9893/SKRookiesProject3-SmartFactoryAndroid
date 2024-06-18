@@ -18,7 +18,10 @@
 - 딥러닝 모델 구축
 - 백엔드 서버 구축
 - 안드로이드 앱 구축
-  
+
+## 아키텍쳐
+![image](https://github.com/yunyechan9893/SKRookiesProject3-SmartFactoryAndroid/assets/125535111/18034276-e824-486a-8866-40980563326d)
+
 ## 달성한 결과/성과
 ![평가지표](https://user-images.githubusercontent.com/125535111/226706000-6fd19ba2-d58e-431d-8193-f8b661361077.png)
 #### 스크래치 검출 정확도 90% 이상 달성
@@ -28,7 +31,6 @@
 
 ## 결과
 ![제목을-입력해주세요_-001](https://github.com/yunyechan9893/sk_rookies_project3/assets/125535111/1cd62fe0-1926-49f0-9c82-bffc316ff881)
-
 
 <br />
 
